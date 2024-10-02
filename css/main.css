@@ -25,25 +25,13 @@ html {
 .bg-v {
     background-image: url('../img/bg_v.jpg');
 }
-#danmaku {
-    z-index: 3;
-}
 .danmaku {
     font-weight: 800;
-    position: relative;
-    z-index: 5;
-}
-.danmaku::after {
-    content: attr(data-content);
-    -webkit-text-stroke: 8px #fff;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 4;
+    -webkit-text-stroke: 1px #fff;
 }
 .mouse-fading-text {
     z-index: 99;
     position: absolute;
-    font-weight: bold;
+    font-weight: 800;
     text-wrap: nowrap;
 }
