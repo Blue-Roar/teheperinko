@@ -37,40 +37,26 @@ function generateDanmaku() {
 
 
 let a_idx = 0;
-
-let ac = new AudioContext();
-
 $(function (){
     generateDanmaku();
     $(window).on('resize', function() {
         generateDanmaku();
     });
     $("body").click(function(e) {
-        const a = teheperinkoText;
-        const $i = $("<span/>").text(a[a_idx]);
-        a_idx = (a_idx + 1) % a.length;
-        const x = e.pageX,
-              y = e.pageY;
+        const $i = $("<span/>").text(teheperinkoText[a_idx]);
+        a_idx = (a_idx + 1) % teheperinkoText.length;
+        const x = e.pageX, y = e.pageY;
+        $i.addClass("mouse-fading-text");
         $i.css({
-            "z-index": 999,
-            "top": y - 20,
+            "top": y-20,
             "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
             "color": color16()
         });
         $("body").append($i);
         loadSound("./audio/"+teheperinkoAudio.getRandom());
-        $i.animate(
-            {
-                "top": y - 180,
-                "opacity": 0
-            },
-            1500,
-            function() {
-                $i.remove();
-            }
-        );
+        $i.animate({"top":y-180,"opacity":0},1500,function() {
+            $i.remove();
+        });
     });
 })
 
@@ -81,6 +67,7 @@ function color16(){
     return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }
 
+let ac = new AudioContext();
 function loadSound(url_data) {
     const req = new XMLHttpRequest();
     req.open('GET', url_data, true);
